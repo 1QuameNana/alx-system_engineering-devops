@@ -1,5 +1,5 @@
 #!/bin/bash
-W=$((32#$WATER + 16#$STIR))
+#W=$((32#$WATER + 16#$STIR))
 echo "obase=13; $W" | bc
 
 
