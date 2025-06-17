@@ -1,6 +1,6 @@
 #!/bin/bash
 W=$((32#$WATER + 16#$STIR))
-echo "Result in base 13: $(echo "obase=13; $W" | bc)"
+echo "obase=13; $W" | bc
 
 
 
