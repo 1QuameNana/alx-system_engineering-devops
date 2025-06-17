@@ -1,0 +1,3 @@
+#!/bin/bash
+echo -e "\n3. Every other line from input (Ctrl+D to stop):"
+awk 'NR % 2 == 1'

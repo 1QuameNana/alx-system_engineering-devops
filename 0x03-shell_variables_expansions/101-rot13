@@ -1,0 +1,4 @@
+#!/bin/bash
+echo -e "\n2. ROT13 Encoding/Decoding:"
+read -p "Enter text to encode/decode: " INPUT
+echo "$INPUT" | tr 'A-Za-z' 'N-ZA-Mn-za-m'

@@ -1,0 +1,18 @@
+#!/bin/bash
+echo -e "\n4. Add WATER and STIR (base 32 + base 16 = base 13 result):"
+W_DEC=$((32#$WATER))
+S_DEC=$((16#$STIR))
+SUM=$((W_DEC + S_DEC))
+# Function to convert to base 13
+to_base13() {
+    local n=$1
+    local base13=""
+    local digits=(0 1 2 3 4 5 6 7 8 9 A B C)
+    while (( n > 0 )); do
+        base13=${digits[n % 13]}$base13
+        ((n /= 13))
+    done
+    echo "${base13:-0}"
+}
+echo "Result in base 13: $(to_base13 $SUM)"
+
