@@ -1,5 +1,6 @@
 #!/bin/bash
-echo -e "\n4. Add WATER and STIR (base 32 + base 16 = base 13 result):"
-W_DEC=$((32#$WATER)) S_DEC=$((16#$STIR)) SUM=$((W_DEC + S_DEC))
+W=$((32#$WATER + 16#$STIR))
+echo "Result in base 13: $(echo "obase=13; $W" | bc)"
+
 
 
