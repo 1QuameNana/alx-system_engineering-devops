@@ -1,0 +1,62 @@
+User Accesses www.foobar.com
+When a  User wants to visit the website
+A user opens a browser and types www.foobar.com.
+The browser needs to resolve this domain to an IP address.
+
+ INFRASTRUCTURE
+
+Domain Name: foobar.com
+A domain name is a human-readable alias for an IP address (like 8.8.8.8).
+www.foobar.com has a DNS A record pointing to the IP address 8.8.8.8.
+DNS translates www.foobar.com → 8.8.8.8.
+What is the www record?
+It is a subdomain.Technically, it is an A record (Address Record) in DNS.
+
+SERVER
+
+A physical or virtual machine located at IP 8.8.8.8.
+Runs Linux and hosts all required services:
+Nginx (Web Server)
+Application Server (e.g., Gunicorn)
+Application Code (your codebase)
+MySQL (Database)
+
+ WEB SERVER: Nginx
+
+Listens on port 80 (HTTP) or 443 (HTTPS).
+Receives incoming requests from users.
+Handles:
+Static files (HTML, CSS, JS, images)
+Proxying requests to the application server (for dynamic content)
+
+APPLICATION SERVER: Gunicorn / uWSGI
+
+Nginx forwards dynamic requests (e.g., /login, /dashboard) to the app server.
+Runs the backend code (e.g., Python, PHP, Node.js).
+Handles logic like user login, data fetching, and form submissions.
+
+APPLICATION FILES (Codebase)
+
+The source code of your website (routes, views, templates, business logic).
+Stored on the same server.
+
+
+DATABASE: MySQL
+
+Stores structured data: users, products, sessions, etc.
+The application server communicates with it over a local socket or localhost:3306.
+
+
+COMMUNICATION FLOW
+
+User types www.foobar.com.
+DNS resolves to 8.8.8.8.
+User's browser sends an HTTP request to 8.8.8.8.
+Nginx (web server) receives the request.
+If static: Nginx serves it directly.
+If dynamic: Nginx forwards it to the Application Server.
+Application Server executes code, fetches data from MySQL.
+Response is passed back to Nginx.
+Nginx sends it to the user’s browser.
+
+
