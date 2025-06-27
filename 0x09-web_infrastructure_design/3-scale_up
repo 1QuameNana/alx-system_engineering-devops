@@ -1,0 +1,27 @@
+Infrastructure Components and Reasons for Inclusion
+1. Load Balancer (HAProxy, Clustered)
+Purpose: Distributes incoming traffic evenly across multiple web servers to ensure no single server is overloaded.
+Provides high availability and failover.
+Improves scalability and performance by balancing load.
+Ensures fault tolerance (if one load balancer fails, the other takes over in the cluster).
+
+2. Web Server (Nginx)
+Purpose: Handles HTTP/HTTPS requests from users.
+Serves static content (HTML, CSS, JS) quickly.
+Acts as a reverse proxy to the application server.
+Offloads SSL termination to reduce app server load.
+
+3. Application Server (e.g., Django, Flask, Node.js)
+Purpose: Executes business logic and processes dynamic content.
+
+This seeks to address the concerns of:
+Separating web layer from the application logic.
+Enabling scaling and managing application code independently.
+Improving maintainability and modularity of the system.
+
+4. Database Server (MySQL or PostgreSQL)
+Purpose: Stores and manages all application data.
+
+Used for Centralized data access.
+Isolated for better performance and security.
+Easy to scale (read replicas or sharding if needed).

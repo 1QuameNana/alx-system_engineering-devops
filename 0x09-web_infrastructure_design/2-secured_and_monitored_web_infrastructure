@@ -1,0 +1,35 @@
+Explaining Monitoring Specifics
+Why Monitoring is Needed
+To detect downtimes or bottlenecks.
+Recieving alerts on security threats (e.g., unusual traffic).
+Support capacity planning.
+
+How Data Is Collected
+Agents or collectors installed on each node.
+Sends logs and metrics (CPU, memory, disk, QPS, etc.) to centralized dashboard.
+Can be push-based (agent pushes) or pull-based (server polls).
+
+How to Monitor Web Server QPS
+Configure Nginx logs to output request metrics.
+Use tools like:
+Prometheus + Nginx Exporter
+SumoLogic log queries
+Datadog integrations
+Visualize metrics (QPS per endpoint, latency, etc.) on a dashboard.
+
+Infrastructure Drawbacks and Issues
+ 1. SSL Termination at Load Balancer
+Issue: If SSL is terminated at the LB, internal traffic to backend servers is unencrypted.
+Risk: Traffic sniffing possible on compromised internal network.
+Fix: Use SSL passthrough or re-encrypt traffic from LB to backend with another certificate.
+ 2. Single MySQL Write Server
+Issue: Single point of failure.
+Risk: Downtime during failure; limits scalability.
+Fix: Add MySQL replication with read replicas and a failover strategy (e.g., MySQL Group Replication or ProxySQL).
+ 3. All-in-One Servers
+Issue: Each server having DB, web, and app tiers:
+Hard to scale
+
+Difficult to isolate failures
+Resource contention (CPU spikes from one service affect all)
+Fix: Separate concerns — dedicated servers for each role (as we’ve done in this 3-tier split).
