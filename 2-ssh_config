@@ -1,0 +1,6 @@
+Host myserver
+    HostName your_server_ip_or_hostname
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+
