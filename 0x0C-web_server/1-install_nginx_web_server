@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Installs Nginx, starts it, and configures it to return 'Hello World!'
+
+# Update and install Nginx
+apt-get update -y
+apt-get install nginx -y
+
+# Set a custom index page
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+
+# Start Nginx (without systemctl)
+service nginx start
+

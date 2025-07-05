@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Check for correct number of arguments
+if [ "$#" -lt 4 ]; then
+  echo "Usage: 0-transfer_file PATH_TO_FILE SERVER_NAME USERNAME PATH_TO_SSH_KEY"
+  exit 1
+fi
+
+# Assign arguments to variables
+FILE=$1
+SERVER=$2     # This can be a hostname like 649811-web-01 or an IP address
+USERNAME=$3
+SSH_KEY=$4
+
+# Transfer the file to the user's home directory on the server
+scp -i "$SSH_KEY" -o StrictHostKeyChecking=no "$FILE" "${USERNAME}@${SERVER}:~/"
+
